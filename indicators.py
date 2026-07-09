@@ -1,0 +1,32 @@
+name: Trend Sniper Clean TEST
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Trend Sniper Clean TEST
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python trend_sniper.py
+
+      - name: Upload scan files
+        uses: actions/upload-artifact@v4
+        with:
+          name: trend-sniper-scan
+          path: |
+            last_scan.json
+            signals.csv
+            state.json
+          if-no-files-found: ignore
