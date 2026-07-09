@@ -1,5 +1,4 @@
-
-name: Trend Sniper Clean TEST
+name: Trend Sniper Clean v1 TEST
 
 on:
   schedule:
@@ -16,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Trend Sniper Clean TEST
+      - name: Run Trend Sniper Clean v1
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
