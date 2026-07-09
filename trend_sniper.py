@@ -698,4 +698,11 @@ def main():
     print("Ultimo scan salvato in: last_scan.json")
 
 if __name__ == "__main__":
-    main()
+    while True:
+        try:
+            main()
+        except Exception as e:
+            print(f"Errore: {e}")
+
+        print("Attendo 300 secondi...")
+        time.sleep(300)
