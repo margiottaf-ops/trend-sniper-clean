@@ -10,6 +10,7 @@
 # - 5M/15M/30M notificati solo 08:00-20:00 ora italiana
 # - 1H/4H/1D notificati sempre
 # - anti-duplicati finché il setup resta attivo
+# - watchlist estesa a 16 asset
 # - stop ATR leggermente più ampio, con size ricalcolata
 # - scansioni allineate alle chiusure dei 5 minuti
 #
@@ -56,8 +57,13 @@ WATCHLIST = {
     "USDCAD": "CAD=X",
     "EURJPY": "EURJPY=X",
     "GBPJPY": "GBPJPY=X",
+    "EURGBP": "EURGBP=X",
+    "NZDUSD": "NZDUSD=X",
+    "EURAUD": "EURAUD=X",
     "XAUUSD": "GC=F",
+    "XAGUSD": "SI=F",
     "US100": "NQ=F",
+    "US500": "ES=F",
     "BTCUSD": "BTC-USD",
     "ETHUSD": "ETH-USD",
 }
