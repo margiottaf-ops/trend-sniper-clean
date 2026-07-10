@@ -7,7 +7,8 @@
 # - 4H usato come conferma per i timeframe inferiori
 # - 30M aggiunto
 # - 5M mantenuto ma reso molto più selettivo
-# - notifiche Telegram solo 08:00-20:00 ora italiana
+# - 5M/15M/30M notificati solo 08:00-20:00 ora italiana
+# - 1H/4H/1D notificati sempre
 # - anti-duplicati finché il setup resta attivo
 # - stop ATR leggermente più ampio, con size ricalcolata
 # - scansioni allineate alle chiusure dei 5 minuti
@@ -910,7 +911,8 @@ def test_message():
         "1D attivo.\n"
         "30M attivo.\n"
         "5M Premium attivo.\n"
-        "Notifiche 08:00-20:00 ora italiana.\n"
+        "5M/15M/30M: notifiche 08:00-20:00.\n"
+        "1H/4H/1D: notifiche sempre.\n"
         "Anti-duplicati attivo."
     )
 
@@ -1090,7 +1092,10 @@ def main():
 
                 active_setups[setup_key] = result["status"]
 
-                if notify_open:
+                high_timeframe = timeframe in ("1H", "4H", "1D")
+                should_notify = notify_open or high_timeframe
+
+                if should_notify:
                     sent = send_telegram(alert_message(result))
                     notification_status = (
                         "SENT" if sent else "SEND_ERROR"
